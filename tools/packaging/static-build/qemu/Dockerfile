@@ -2,7 +2,7 @@
 # Copyright (c) 2020 Ant Group
 #
 # SPDX-License-Identifier: Apache-2.0
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 # CACHE_TIMEOUT: date to invalid cache, if the date changes the image will be rebuild
 # This is required to keep build dependencies with security fixes.
@@ -51,19 +51,23 @@ RUN apt-get update && apt-get upgrade -y && \
 	    libltdl-dev${DPKG_ARCH} \
 	    libmount-dev${DPKG_ARCH} \
 	    libpixman-1-dev${DPKG_ARCH} \
+	    librados-dev \
+	    librbd-dev \
+	    libseccomp-dev${DPKG_ARCH} \
+	    libseccomp2${DPKG_ARCH} \
 	    libselinux1-dev${DPKG_ARCH} \
 	    libtool${DPKG_ARCH} \
 	    make \
 	    ninja-build \
 	    pkg-config${DPKG_ARCH} \
-	    libseccomp-dev${DPKG_ARCH} \
-	    libseccomp2${DPKG_ARCH} \
 	    patch \
 	    python3 \
 	    python3-dev \
+	    python3-pip \
 	    python3-venv \
 	    rsync \
 	    zlib1g-dev${DPKG_ARCH} && \
+	    pip3 install tomli && \
     if [ "${ARCH}" != s390x ]; then apt-get install -y --no-install-recommends libpmem-dev${DPKG_ARCH}; fi && \
     GCC_ARCH="${ARCH}" && if [ "${ARCH}" = "ppc64le" ]; then GCC_ARCH="powerpc64le"; fi && \
     if [ "${ARCH}" != "$(uname -m)" ]; then apt-get install --no-install-recommends -y gcc-"${GCC_ARCH}"-linux-gnu; fi && \

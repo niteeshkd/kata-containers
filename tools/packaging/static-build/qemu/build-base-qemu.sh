@@ -71,7 +71,7 @@ ${container_engine} pull ${container_image} || ("${container_engine}" build \
 	--env HYPERVISOR_NAME="${HYPERVISOR_NAME}" \
 	--env QEMU_VERSION_NUM="${qemu_version}" \
 	--env ARCH="${ARCH}" \
-	-v "${repo_root_dir}:/root/kata-containers" \
+	-v "${repo_root_dir}:/root/kata-containers:Z" \
 	-v "${PWD}":/share "${container_image}" \
 	bash -c "/root/kata-containers/tools/packaging/static-build/qemu/build-qemu.sh"
 
