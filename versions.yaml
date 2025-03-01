@@ -322,9 +322,9 @@ externals:
     version: "2.5.5"
 
   pause:
-    description: "Kubernetes pause container image"
-    repo: "docker://registry.k8s.io/pause"
-    version: "3.9"
+    description: "OCP pause container image"
+    repo: "docker://quay.io/bpradipt/okd-pause"
+    version: "latest"
 
   nydus:
     description: "Nydus image acceleration service"
